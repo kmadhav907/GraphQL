@@ -1,4 +1,4 @@
-import graphql, { GraphQLSchema } from "graphql";
+import graphql, { GraphQLSchema , GraphQLID} from "graphql";
 
 const { GraphQLObjectType, GraphQLString } = graphql;
 
@@ -9,7 +9,7 @@ const books = [
 export const BookType = new GraphQLObjectType({
   name: "Book",
   fields: () => ({
-    id: { type: GraphQLString, },
+    id: { type: GraphQLID, },
     name: { type: GraphQLString },
     genre: { type: GraphQLString },
   }),
@@ -19,7 +19,7 @@ export const RootQuery = new GraphQLObjectType({
     fields: {
         book: {
             type: BookType,
-            args: {id: { type: GraphQLString}},
+            args: {id: { type: GraphQLID}},
             resolve(parent, args){
                 // Code to get from DB;
                 console.log(args.id)
